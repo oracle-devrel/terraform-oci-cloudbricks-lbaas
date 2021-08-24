@@ -4,18 +4,11 @@
 #
 # Purpose: The following script defines the output for LBaaS Creation
 
-output "ip_address_details" {
-  value = [oci_load_balancer.LoadBalancer.ip_address_details]
+
+output "app_lbaas_instance" {
+  value = oci_load_balancer.AppLoadBalancer
 }
 
-output "nsg" {
-  value = oci_load_balancer.LoadBalancer.network_security_group_ids
-}
-
-output "shape" {
-  value = oci_load_balancer.LoadBalancer.shape
-}
-
-output "lbaas_instance" {
-  value = oci_load_balancer.LoadBalancer
+output "network_lbaas_instance" {
+  value = oci_network_load_balancer_network_load_balancer.NetworkLoadBalancer
 }

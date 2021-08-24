@@ -66,19 +66,31 @@ variable "is_reserved_ip" {
   description = "Boolean that determines if reserved ip should be used"
   default     = false
   type        = bool
-} 
+}
 
 variable "reserved_ip_id" {
   description = "Resereved ip address OCID"
 }
 variable "lbaas_shape_max_bw_mbps" {
   description = "Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can achieve. This bandwidth cannot always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps parameter. The values must be between minimumBandwidthInMbps and the highest limit available in multiples of 10. The highest limit available is defined in Service Limits. Example: 1500"
-  default     = null
+  default     = "10"
 }
 
 variable "lbaas_shape_min_bw_mbps" {
   description = "Bandwidth in Mbps that determines the total pre-provisioned bandwidth (ingress plus egress). The values must be between 0 and the maximumBandwidthInMbps in multiples of 10. The current allowed maximum value is defined in Service Limits. Example: 150"
-  default     = null
+  default     = "10"
+}
+
+variable "is_preserve_source_destination" {
+  description = "This optional parameter can be enabled only if backends are compute OCIDs. When enabled, the skipSourceDestinationCheck parameter is automatically enabled on the load balancer VNIC, and packets are sent to the backend with the entire IP header intact."
+  default     = false
+  type        = bool
+}
+
+variable "is_app_lbaas" {
+  description = "Determines whether load balancer is an application load balancer, setting this to false will generate a network load balancer"
+  default     = true
+  type        = bool
 }
 
 /********** LBaaS Variables **********/
