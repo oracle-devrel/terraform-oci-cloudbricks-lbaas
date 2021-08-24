@@ -33,6 +33,16 @@ data "oci_core_vcns" "VCN" {
   }
 }
 
+data "oci_core_network_security_groups" "NSG" {
+  compartment_id = local.nw_compartment_id
+  vcn_id         = local.vcn_id
+
+  filter {
+    name   = "display_name"
+    values = ["${var.lb_nsg_name}"]
+  }
+}
+
 
 /********** Subnet Accessors **********/
 
@@ -56,4 +66,7 @@ locals {
   
   # VCN OCID Local Accessor 
   vcn_id = lookup(data.oci_core_vcns.VCN.virtual_networks[0], "id")
+
+   # NSG OCID Local Accessor
+  nsg_id = length(data.oci_core_network_security_groups.NSG.network_security_groups) > 0 ? lookup(data.oci_core_network_security_groups.NSG.network_security_groups[0], "id") : ""
 }

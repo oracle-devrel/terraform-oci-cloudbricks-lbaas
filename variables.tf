@@ -46,6 +46,12 @@ variable "lbaas_display_name" {
 variable "is_private" {
   description = "Whether the load balancer has a VCN-local (private) IP address."
   default     = true
+  type        = bool
+}
+
+variable "lb_nsg_name" {
+  description = "Display Name of an optional Network Security Group"
+  default     = ""
 }
 
 variable "lbaas_instance_compartment_name" {
@@ -56,6 +62,15 @@ variable "lbaas_network_compartment_name" {
   description = "Defines the compartment where the Network is currently located"
 }
 
+variable "is_reserved_ip" {
+  description = "Boolean that determines if reserved ip should be used"
+  default     = false
+  type        = bool
+} 
+
+variable "reserved_ip_id" {
+  description = "Resereved ip address OCID"
+}
 variable "lbaas_shape_max_bw_mbps" {
   description = "Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can achieve. This bandwidth cannot always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps parameter. The values must be between minimumBandwidthInMbps and the highest limit available in multiples of 10. The highest limit available is defined in Service Limits. Example: 1500"
   default     = null

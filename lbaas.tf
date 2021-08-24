@@ -7,12 +7,19 @@
 
 
 resource "oci_load_balancer" "LoadBalancer" {
-  shape          = var.lbaas_shape
   compartment_id = local.compartment_id
+  display_name = var.lbaas_display_name
+  shape          = var.lbaas_shape
   subnet_ids     = [local.subnet_ocid]
 
-  display_name = var.lbaas_display_name
   is_private   = var.is_private
+  network_security_group_ids = local.nsg_id == "" ? [] : [local.nsg_id]
+  dynamic "reserved_ips" {
+    for_each = var.is_reserved_ip ? [1] : []
+    content {
+      id = var.reserved_ip_id
+    }
+  }
   shape_details {
     maximum_bandwidth_in_mbps = var.lbaas_shape_max_bw_mbps
     minimum_bandwidth_in_mbps = var.lbaas_shape_min_bw_mbps
