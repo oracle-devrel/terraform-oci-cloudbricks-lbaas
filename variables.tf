@@ -70,6 +70,7 @@ variable "is_reserved_ip" {
 
 variable "reserved_ip_id" {
   description = "Resereved ip address OCID"
+  default     = ""
 }
 variable "lbaas_shape_max_bw_mbps" {
   description = "Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can achieve. This bandwidth cannot always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps parameter. The values must be between minimumBandwidthInMbps and the highest limit available in multiples of 10. The highest limit available is defined in Service Limits. Example: 1500"
