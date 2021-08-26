@@ -16,7 +16,7 @@ resource "oci_load_balancer" "AppLoadBalancer" {
   is_private   = var.is_private
   network_security_group_ids = local.nsg_id == "" ? [] : [local.nsg_id]
   dynamic "reserved_ips" {
-    for_each = var.is_reserved_ip ? [1] : []
+    for_each = var.reserved_ip_id == "" ? [] : [1]
     content {
       id = var.reserved_ip_id
     }

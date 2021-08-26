@@ -62,12 +62,6 @@ variable "lbaas_network_compartment_name" {
   description = "Defines the compartment where the Network is currently located"
 }
 
-variable "is_reserved_ip" {
-  description = "Boolean that determines if reserved ip should be used"
-  default     = false
-  type        = bool
-}
-
 variable "reserved_ip_id" {
   description = "Resereved ip address OCID"
   default     = ""
