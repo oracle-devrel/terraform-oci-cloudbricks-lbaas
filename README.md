@@ -5,6 +5,11 @@
 ## Introduction
 The following brick allows for provisioning an application or network load balancer in OCI. 
 
+## Reference Architecture
+The following is the reference architecture associated to this brick
+
+![Reference Architecture](./images/Bricks_Architectures-LBaaS.jpg)
+
 ### Prerequisites
 - Pre-baked Artifact and Network Compartments
 - Pre-baked VCN
